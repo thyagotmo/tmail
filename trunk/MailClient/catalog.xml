@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/MailServer/ws/iInitServerWS?wsdl" uri="src/conf/xml-resources/web-service-references/iInitServerWS/wsdl/localhost_8080/MailServer/ws/iInitServerWS.wsdl"/>
+    <system systemId="http://localhost:8080/MailServer/ws/iLoginWS?wsdl" uri="src/conf/xml-resources/web-service-references/iLoginWS/wsdl/localhost_8080/MailServer/ws/iLoginWS.wsdl"/>
+    <system systemId="http://localhost:8080/MailServer/ws/iLoginWS?wsdl=ILoginWS.wsdl" uri="src/conf/xml-resources/web-service-references/iLoginWS/wsdl/localhost_8080/MailServer/ws/iLoginWS.wsdl_ILoginWS.wsdl"/>
+    <system systemId="http://localhost:8080/MailServer/ws/iCadastroWS?wsdl" uri="src/conf/xml-resources/web-service-references/iCadastroWS/wsdl/localhost_8080/MailServer/ws/iCadastroWS.wsdl"/>
+    <system systemId="http://localhost:8080/MailServer/ws/iCadastroWS?wsdl=ICadastroWS.wsdl" uri="src/conf/xml-resources/web-service-references/iCadastroWS/wsdl/localhost_8080/MailServer/ws/iCadastroWS.wsdl_ICadastroWS.wsdl"/>
+    <system systemId="http://localhost:8080/MailServer/ws/iEmailWS?wsdl" uri="src/conf/xml-resources/web-service-references/iEmailWS/wsdl/localhost_8080/MailServer/ws/iEmailWS.wsdl"/>
+    <system systemId="http://localhost:8080/MailServer/ws/iEmailWS?wsdl=IEmailWS.wsdl" uri="src/conf/xml-resources/web-service-references/iEmailWS/wsdl/localhost_8080/MailServer/ws/iEmailWS.wsdl_IEmailWS.wsdl"/>
+</catalog>

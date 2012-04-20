@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <managed-bean>
+        <description>Bean Responsável pelo gerenciamente do sistema de emails</description>
+        <managed-bean-name>mailbox</managed-bean-name>
+        <managed-bean-class>sistema.beans.MailBoxBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <description>Bean responsável pelo login do usuário</description>
+        <managed-bean-name>loginbean</managed-bean-name>
+        <managed-bean-class>sistema.beans.LoginBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <description>Bean Responsável pelo cadastro do usuário</description>
+        <managed-bean-name>registerBean</managed-bean-name>
+        <managed-bean-class>sistema.beans.RegisterBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <description>Responsável pela página sendMail</description>
+        <managed-bean-name>sendMailBean</managed-bean-name>
+        <managed-bean-class>sistema.beans.SendMailBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>registerUser</from-outcome>
+            <to-view-id>/register.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>loginSucess</from-outcome>
+            <to-view-id>/mailBox.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/register.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sucessRegister</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>voltarLogin</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/sendMail.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sucessoEnviarEmail</from-outcome>
+            <to-view-id>/mailBox.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/mailBox.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sendMail</from-outcome>
+            <to-view-id>/sendMail.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

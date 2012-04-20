@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ConfigService" targetNamespace="http://config/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://config/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://config/" version="1.0" xmlns:tns="http://config/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="initServer" type="tns:initServer"/>
+<xs:element name="initServerResponse" type="tns:initServerResponse"/>
+<xs:complexType name="initServer">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="initServerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="initServer">
+    <wsdl:part element="tns:initServer" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="initServerResponse">
+    <wsdl:part element="tns:initServerResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IInitServer">
+    <wsdl:operation name="initServer">
+      <wsdl:input message="tns:initServer" name="initServer">
+    </wsdl:input>
+      <wsdl:output message="tns:initServerResponse" name="initServerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConfigServiceSoapBinding" type="tns:IInitServer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="initServer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="initServer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="initServerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConfigService">
+    <wsdl:port binding="tns:ConfigServiceSoapBinding" name="ConfigPort">
+      <soap:address location="http://localhost:8080/MailServer/ws/iInitServerWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

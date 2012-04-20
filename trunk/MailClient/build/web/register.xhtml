@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Register</title>
+    </h:head>
+    <style type="text/css">
+        body {
+            background: url(../images/background.png);
+            margin: 0;
+            padding: 0;
+            font-family: geneva, arial, helvetica, sans-serif;
+            font-size:80%;
+        }
+    </style>
+    <h:body>
+
+        <p:layout fullPage="false" style="width: 1200px;height: 550px;margin-left: 20px;margin-top: 20px">
+
+            <p:layoutUnit size="20%" position="north" style="border: inherit">
+                <center>
+                    <p:graphicImage value="/images/logo_tmail_d.png" style="width: 400px"/> 
+                </center>
+            </p:layoutUnit>
+
+
+            <p:layoutUnit size="30%" position="west" >
+                <p:graphicImage value="/images/tmail.png" style="size: 30%;margin-left: 40px;margin-top: 20px"/> 
+
+                <center style="margin-top: 30px">
+                    <h:outputText value="- Envie emails de qualquer lugar" style="font-size: 15px"/>
+                    <br/><br/>
+                    <h:outputText value="- Contate seus amigos e familiares" style="font-size: 15px"/>
+                    <br/><br/>
+                    <h:outputText value="- Cadastre-se agora para utilizar todos os beneficios do TMail" style="font-size: 15px"/>
+                </center>
+            </p:layoutUnit>
+
+            <p:layoutUnit size="100%" position="center">
+
+                <center>
+                    <h:form id="formRegister" style="margin-top: 20px">
+
+                        <p:growl id="msg" />
+                        <center>
+                            <h:outputText value="Registre-se agora!" style="font-size: 30px" />
+
+                        </center>
+                        <p:panelGrid columns="2" style="width: 400px;margin-top: 25px">
+
+
+                            <h:outputText value="Nome:" style="font-size: 15px"/>
+                            <h:inputText value="#{registerBean.user.firstName}" maxlength="20" required="true" requiredMessage="É necessário preencher o nome!"/>
+                            <h:outputText value="Sobrenome:" style="font-size: 15px"/>
+                            <h:inputText value="#{registerBean.user.lastName}" maxlength="20" required="true" requiredMessage="É necessário preencher o sobrenome!"/>
+
+                            <h:outputText value="Gênero:" style="font-size: 15px"/>
+                            <h:selectOneMenu value="#{registerBean.user.gender}" required="true" requiredMessage="Selecione uma opção!">
+                                <f:selectItem itemLabel="Masculino" itemValue="masculino" />
+                                <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
+                            </h:selectOneMenu>
+
+                            <h:outputText value="Data de nascimento:" style="font-size: 15px"/>
+                            <p:inputMask value="#{registerBean.user.birthDay}" mask="99/99/9999" required="true" requiredMessage="Preencha sua data de nascimento!"/> 
+
+                            <h:outputText value="Login:" style="font-size: 15px"/>
+                            <h:inputText value="#{registerBean.user.login}" maxlength="20" required="true" requiredMessage="Digite um login!"/>
+                            <h:outputText value="Password:" style="font-size: 15px"/>
+                            <h:inputText value="#{registerBean.user.password}" maxlength="20" required="true" requiredMessage="Digite sua senha!"/>
+
+                        </p:panelGrid>
+
+                        *Todos os campos são obrigatórios
+                        <br/><br/>
+                        <p:commandButton ajax="false" value="Registrar" action="#{registerBean.registerUser}" update=":formMsgLogin:msgLogin" style="margin-left: 300px"/>
+
+                    </h:form>
+                    <h:form>
+                        <p:commandButton ajax="false" value="Voltar" action="voltarLogin" style="margin-right: 300px" />
+                    </h:form>
+
+                </center>
+
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

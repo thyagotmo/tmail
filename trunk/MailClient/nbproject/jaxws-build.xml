@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        -->
+<project xmlns:xalan="http://xml.apache.org/xslt" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${java.home}/../lib/tools.jar:${j2ee.platform.wsimport.classpath}:${javac.classpath}"/>
+        </taskdef>
+        <condition property="conf-dir" value="${conf.dir}/" else="">
+            <isset property="conf.dir"/>
+        </condition>
+    </target>
+    <target name="wsimport-client-iInitServerWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/iInitServerWS"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/iInitServerWS" destdir="${build.generated.dir}/jax-wsCache/iInitServerWS" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/iInitServerWS/wsdl/localhost_8080/MailServer/ws/iInitServerWS.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/MailServer/ws/iInitServerWS?wsdl" xnocompile="true" xendorsed="true" package="sistema.wscomunicator.iinitserver">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/iInitServerWS/wsdl/localhost_8080/MailServer/ws/iInitServerWS.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/iInitServerWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/iInitServerWS">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-iInitServerWS" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/sistema/wscomunicator/iinitserver"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/iInitServerWS"/>
+    </target>
+    <target name="wsimport-client-iLoginWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/iLoginWS"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/iLoginWS" destdir="${build.generated.dir}/jax-wsCache/iLoginWS" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/iLoginWS/wsdl/localhost_8080/MailServer/ws/iLoginWS.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/MailServer/ws/iLoginWS?wsdl" xnocompile="true" xendorsed="true" package="sistema.wscomunicator.ilogin">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/iLoginWS/wsdl/localhost_8080/MailServer/ws/iLoginWS.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/iLoginWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/iLoginWS">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-iLoginWS" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/sistema/wscomunicator/ilogin"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/iLoginWS"/>
+    </target>
+    <target name="wsimport-client-iCadastroWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/iCadastroWS"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/iCadastroWS" destdir="${build.generated.dir}/jax-wsCache/iCadastroWS" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/iCadastroWS/wsdl/localhost_8080/MailServer/ws/iCadastroWS.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/MailServer/ws/iCadastroWS?wsdl" xnocompile="true" xendorsed="true" package="sistema.wscomunicator.icadastro">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/iCadastroWS/wsdl/localhost_8080/MailServer/ws/iCadastroWS.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/iCadastroWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/iCadastroWS">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-iCadastroWS" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/sistema/wscomunicator/icadastro"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/iCadastroWS"/>
+    </target>
+    <target name="wsimport-client-iEmailWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/iEmailWS"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/iEmailWS" destdir="${build.generated.dir}/jax-wsCache/iEmailWS" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/iEmailWS/wsdl/localhost_8080/MailServer/ws/iEmailWS.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/MailServer/ws/iEmailWS?wsdl" xnocompile="true" xendorsed="true" package="sistema.wscomunicator.iemail">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/iEmailWS/wsdl/localhost_8080/MailServer/ws/iEmailWS.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/iEmailWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/iEmailWS">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-iEmailWS" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/sistema/wscomunicator/iemail"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/iEmailWS"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-iInitServerWS, wsimport-client-iLoginWS, wsimport-client-iCadastroWS, wsimport-client-iEmailWS"/>
+</project>

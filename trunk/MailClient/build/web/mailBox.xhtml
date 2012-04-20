@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>T-Mail</title>
+    </h:head>
+    <link type="text/css" rel="stylesheet" href="/styles/primefaces.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/terminal.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/dock.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/stack.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/aristo.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/default.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/syntaxhighlighter.css" />
+    <style type="text/css">
+        body {
+            background: url(../images/background.png);
+            margin: 0;
+            padding: 0;
+            font-family: geneva, arial, helvetica, sans-serif;
+            font-size:80%;
+        }
+
+        .ui-menuitem-icon.ui-icon.mailIcon {
+            background: url(../icons/mail.png) no-repeat;
+            width:12px;
+            height:12px;
+            border-radius:0px;
+        }
+
+        .ui-dialog .ui-terminal {
+            border:0;
+        }
+
+        .ui-dialog.terminalDialog .ui-dialog-content {
+            padding:0;
+        }
+
+        .nestedUnit {
+            border:0px none !important;
+        }
+
+        .ui-layout-center .ui-layout-resizer {
+            border:1px solid #A8A8A8 !important;
+        }
+
+        .ui-tree-item span {
+            float:left !important;
+        }
+
+        .ui-tree {
+            border:0px none !important;
+        }
+
+        .ui-tabs {
+            border:0px none !important;
+        }
+    </style>
+    <h:body>
+
+        <h:form id="formMsgHome">
+            <p:growl id="msgHome"/>
+        </h:form>
+
+        <!--Ajax-->
+        <p:ajaxStatus style="display:block;position:fixed;right:0;top:10;z-index: 200">
+            <f:facet name="start">
+                <p:graphicImage value="/images/loading.gif" />
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+        </p:ajaxStatus>
+
+
+        <!--Dialogo sobre-->
+        <p:dialog widgetVar="sobreDlg" resizable="false" modal="true" header="Sobre" width="530" showEffect="fade" hideEffect="fade">  
+            <h:form>  
+                <h:panelGrid columns="1" style="width:100%;text-align:center;">  
+                    <p:graphicImage value="/images/thyago.png" />  
+                    <h:outputText value="T-MAIL X" style="font-size:16px"/>  
+                    <h:outputText value="Version 1.0.0" />  
+                </h:panelGrid>  
+
+                <br/><br/>
+                <h:panelGrid columns="2" style="text-align: left">  
+
+                    <h:outputText value="Thyago" style="font-weight:bold"/>  
+                    <h:outputText value="Tenório" style="font-weight:bold" />  
+
+                    <h:outputText value="GROW-" style="font-weight:bold"/>  
+                    <h:outputText value="Grupo de Otimização da Web" />  
+
+                    <h:outputText value="UFAL-" style="font-weight:bold"/>  
+                    <h:outputText value="Universidade Federal de Alagoas" />
+
+                </h:panelGrid>  
+
+
+            </h:form>  
+        </p:dialog>  
+
+        <!--Barra de Menus-->
+        <p:menubar>  
+
+            <p:submenu label="Arquivo">
+
+                <p:menuitem value="Novo Email" url="/faces/sendMail.xhtml" icon="ui-icon-contact"/>
+                <p:menuitem value="Sair" url="/faces/login.xhtml" icon="ui-icon-close" />
+            </p:submenu>   
+
+            <p:submenu label="Mais">  
+                <p:menuitem value="Sobre" url="#" onclick="sobreDlg.show();" icon="ui-icon"/>  
+            </p:submenu> 
+
+        </p:menubar>  
+
+
+
+        <!--Layout Pagina-->
+        <p:layout fullPage="false" style="width: 1200px;height: 550px;margin-left: 20px;margin-top: 20px">
+
+            <p:layoutUnit position="north"/>
+            <p:layoutUnit position="south"/>
+
+            <!--Arvore de pastas-->
+            <p:layoutUnit position="west" size="20%" resizable="true" collapsible="true" header="Pastas">
+
+                <h:form id="formTree">  
+
+                    <p:tree value="#{mailbox.rootTree}" var="node" dynamic="true" cache="false"  
+                            selectionMode="single"  selection="#{mailbox.selectedNode}" id="tree"  >  
+
+                        <p:ajax event="select" listener="#{mailbox.onNodeSelect}"/>
+
+                        <p:treeNode expandedIcon="ui-icon-folder-open"  
+                                    collapsedIcon="ui-icon-folder-collapsed" type="past">  
+                            <h:form>
+                                <h:outputText value="#{node}"/>
+                            </h:form>
+                        </p:treeNode>
+
+                    </p:tree> 
+
+                </h:form>
+
+            </p:layoutUnit>
+
+            <!--Espaço central de emails-->
+            <p:layoutUnit position="center" size="80%" resizable="true" collapsed="false" header="Emails" >
+
+                <p:layout>
+
+                    <!--Campo emails-->
+                    <p:layoutUnit position="north" size="70%" resizable="true" styleClass="nestedUnit">
+
+                        <p:outputPanel id="datatablemails">
+                            <p:tabView>
+
+                                <p:tab title="T-Mail">
+
+                                    <h:form>
+                                        <p:dataTable  var="mail" value="#{mailbox.mails}">
+
+                                            <p:column headerText="From" sortBy="#{mail.sentUser.login}">
+                                                #{mail.sentUser.login}
+                                            </p:column>
+
+                                            <p:column headerText="Subject" sortBy="#{mail.subject}">
+                                                #{mail.subject}
+                                            </p:column>
+
+                                            <p:column headerText="Date" sortBy="#{mail.dateSent}">
+                                                #{mail.dateSent}
+                                            </p:column>
+
+                                            <p:column>
+                                                <p:commandButton update=":mailViewer" image="ui-icon ui-icon-search" title="Visualizar">
+                                                    <f:setPropertyActionListener value="#{mail }" target="#{mailbox.selectedMail}" />
+                                                </p:commandButton>
+                                                <p:commandButton update=":datatablemails" image="ui-icon-close" title="Deletar" action="#{mailbox.deleteEmail}">
+                                                    <f:setPropertyActionListener value="#{mail }" target="#{mailbox.selectedMail}" />
+                                                </p:commandButton>
+                                            </p:column>
+
+                                        </p:dataTable>
+
+
+                                    </h:form>
+
+
+                                </p:tab>
+
+                            </p:tabView>
+
+                        </p:outputPanel>
+                    </p:layoutUnit>
+
+                    <!--Campo mensagem-->
+                    <p:layoutUnit size="30%" position="center" styleClass="nestedUnit">
+
+                        <p:outputPanel id="mailViewer">
+                            <h:outputText value="#{mailbox.selectedMail.message}" rendered="#{not empty mailbox.selectedMail}" />
+                        </p:outputPanel>
+
+                    </p:layoutUnit>
+
+                </p:layout>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+        <!--Pilha-->
+        <p:stack icon="/images/stack.png" >  
+            <p:menuitem value="Aperture" icon="/images/aperture.png" url="#" />  
+            <p:menuitem value="Photoshop" icon="/images/photoshop.png" url="#"/>  
+            <p:menuitem value="Coda" icon="/images/coda.png" url="#"/>  
+            <p:menuitem value="Safari" icon="/images/safariStack.png" url="#" />  
+            <p:menuitem value="Finder" icon="/images/finderStack.png" url="#" />  
+        </p:stack>  
+    </h:body>
+</html>
+

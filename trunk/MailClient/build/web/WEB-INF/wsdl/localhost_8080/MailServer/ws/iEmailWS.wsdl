@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="FacadeIEmailWSService" targetNamespace="http://impl.email.kernel.sistema/" xmlns:ns1="http://prov.spec.email.kernel.sistema/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.email.kernel.sistema/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://localhost:8080/MailServer/ws/iEmailWS?wsdl=IEmailWS.wsdl" namespace="http://prov.spec.email.kernel.sistema/">
+    </wsdl:import>
+  <wsdl:binding name="FacadeIEmailWSServiceSoapBinding" type="ns1:IEmailWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createPaste">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createPaste">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createPasteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmailsByPaste">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getEmailsByPaste">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEmailsByPasteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPastesByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllPastesByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllPastesByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSentEmailsFromUserByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getSentEmailsFromUserByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSentEmailsFromUserByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEmail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteEmail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteEmailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getEmail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEmailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaste">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPaste">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPasteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSentEmailsByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getSentEmailsByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSentEmailsByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEmail">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sendEmail">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sendEmailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedEmailsFromUserByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getReceivedEmailsFromUserByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReceivedEmailsFromUserByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedEmailsByUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getReceivedEmailsByUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReceivedEmailsByUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePaste">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deletePaste">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deletePasteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FacadeIEmailWSService">
+    <wsdl:port binding="tns:FacadeIEmailWSServiceSoapBinding" name="FacadeIEmailWSPort">
+      <soap:address location="http://localhost:8080/MailServer/ws/iEmailWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

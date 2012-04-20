@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <style type="text/css">
+        body {
+            background: url(../images/background.png);
+            margin: 0;
+            padding: 0;
+            font-family: geneva, arial, helvetica, sans-serif;
+            font-size:80%;
+        }
+    </style>
+    <h:body>
+
+        <p:layout fullPage="false" style="width: 1200px;height: 550px;margin-left: 20px;margin-top: 20px">
+
+            <p:layoutUnit size="20%" position="north" style="border: inherit">
+                <center>
+                    <p:graphicImage value="/images/logo_tmail_d.png" style="width: 400px"/> 
+                </center>
+            </p:layoutUnit>
+
+            <p:layoutUnit size="70%" position="west" style="border: inherit">
+                <center style="margin-top: 30px">
+                    <p:graphicImage value="/images/tmail.png" style="width: 200px; margin-left: 40px;margin-top: 20px"/> 
+
+                    <br/>
+                    <br/>
+                    <h:outputText value="- Gerenciamento de emails completo, de forma rápida e interativa."  style="font-size: 20px"/>
+
+                    <br/><br/>
+                    <h:outputText value="- Organize seus emails em pastas." style="font-size: 20px"/>
+
+                    <br/><br/>
+                    <h:outputText value="- Sem preocupações com espaço de armazenamento." style="font-size: 20px"/>
+
+                </center>
+
+            </p:layoutUnit>
+
+            <p:layoutUnit size="30%" position="center" style="border: inherit">
+
+                <h:form id="formLogin">
+                    <p:growl id="msg2" />
+
+                    <h:outputText id="bemVindo" value="Faça o login" style="font-size: 30px;margin-left: 100px;margin-top: 100px"/>
+
+                    <h:panelGrid id="gridLoginSenha" columns="2" style="margin-top: 40px;margin-left: 60px">
+                        <h:outputText id="loginText" value="Login:"/>
+                        <h:inputText id="login" label="Login"
+                                     value="#{loginbean.user.login}" required="true"/>
+
+                        <h:outputText id="senhaText" value="Senha:"/>
+                        <h:inputSecret id="senha" label="Senha"
+                                       value="#{loginbean.user.password}" required="true"/>
+                    </h:panelGrid>
+                    <p:commandLink id="botaoRecSenha" value="Esqueceu senha?" action="esquecerSenha" style="margin-left: 30px;margin-top: 15px"/>
+                    <p:commandButton ajax="false" id="botaoLogar" value="Entrar" update=":formLogin:msg2" action="#{loginbean.efetuarLogin}" style="margin-left: 40px;margin-top: 15px"/>
+
+                </h:form>
+                <h:form>
+                    <br/>
+                    <br/>
+                    <h:outputText value="Não é cadastrado?" style="margin-left: 20px" /><p:spacer height="20px"/>
+                    <h:commandLink id="botaoRegister" value="Cadastre-se aqui!" action="registerUser"/>
+
+                </h:form>
+
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

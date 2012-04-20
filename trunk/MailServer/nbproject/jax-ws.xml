@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="Config">
+      <implementation-class>config.Config</implementation-class>
+    </service>
+    <service name="FacadeIEmailWS">
+      <implementation-class>sistema.kernel.email.impl.FacadeIEmailWS</implementation-class>
+    </service>
+    <service name="FacadeILoginWS">
+      <implementation-class>sistema.kernel.login.impl.FacadeILoginWS</implementation-class>
+    </service>
+    <service name="FacadeICadastroWS">
+      <implementation-class>sistema.kernel.cadastro.impl.FacadeICadastroWS</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>
