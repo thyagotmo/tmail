@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ICadastroWS" targetNamespace="http://prov.spec.cadastro.kernel.sistema/" xmlns:ns1="http://prov.spec.cadastro.kernel.sistema/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://prov.spec.cadastro.kernel.sistema/" version="1.0" xmlns:tns="http://prov.spec.cadastro.kernel.sistema/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="changePassword" type="tns:changePassword"/>
+<xs:element name="changePasswordResponse" type="tns:changePasswordResponse"/>
+<xs:element name="deleteUser" type="tns:deleteUser"/>
+<xs:element name="deleteUserResponse" type="tns:deleteUserResponse"/>
+<xs:element name="getUser" type="tns:getUser"/>
+<xs:element name="getUserResponse" type="tns:getUserResponse"/>
+<xs:element name="registerUser" type="tns:registerUser"/>
+<xs:element name="registerUserResponse" type="tns:registerUserResponse"/>
+<xs:element name="updateUser" type="tns:updateUser"/>
+<xs:element name="updateUserResponse" type="tns:updateUserResponse"/>
+<xs:complexType name="getUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:userDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="userDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="birthDay" type="xs:string"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="gender" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="pastes" nillable="true" type="tns:pasteDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="pasteDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="createdDate" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="emails" nillable="true" type="tns:emailDTO"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="user" type="tns:userDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="emailDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dateSent" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="receivedUser" nillable="true" type="tns:userDTO"/>
+      <xs:element minOccurs="0" name="sentUser" type="tns:userDTO"/>
+      <xs:element minOccurs="0" name="subject" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="hashSet">
+    <xs:complexContent>
+      <xs:extension base="tns:abstractSet">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="abstractSet">
+    <xs:complexContent>
+      <xs:extension base="tns:abstractCollection">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="abstractCollection">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="registerUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="birthDay" type="xs:string"/>
+      <xs:element minOccurs="0" name="gender" type="xs:string"/>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="registerUserResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="birthDay" type="xs:string"/>
+      <xs:element minOccurs="0" name="gender" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateUserResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteUserResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="changePassword">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="changePasswordResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="changePassword">
+    <wsdl:part element="ns1:changePassword" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserResponse">
+    <wsdl:part element="ns1:getUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerUserResponse">
+    <wsdl:part element="ns1:registerUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUser">
+    <wsdl:part element="ns1:updateUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changePasswordResponse">
+    <wsdl:part element="ns1:changePasswordResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUser">
+    <wsdl:part element="ns1:deleteUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerUser">
+    <wsdl:part element="ns1:registerUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserResponse">
+    <wsdl:part element="ns1:deleteUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUserResponse">
+    <wsdl:part element="ns1:updateUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUser">
+    <wsdl:part element="ns1:getUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ICadastroWS">
+    <wsdl:operation name="getUser">
+      <wsdl:input message="ns1:getUser" name="getUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:getUserResponse" name="getUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <wsdl:input message="ns1:registerUser" name="registerUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:registerUserResponse" name="registerUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <wsdl:input message="ns1:updateUser" name="updateUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:updateUserResponse" name="updateUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input message="ns1:deleteUser" name="deleteUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:deleteUserResponse" name="deleteUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <wsdl:input message="ns1:changePassword" name="changePassword">
+    </wsdl:input>
+      <wsdl:output message="ns1:changePasswordResponse" name="changePasswordResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

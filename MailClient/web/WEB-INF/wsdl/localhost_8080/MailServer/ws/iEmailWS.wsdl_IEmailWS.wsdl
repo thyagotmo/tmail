@@ -1,0 +1,375 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="IEmailWS" targetNamespace="http://prov.spec.email.kernel.sistema/" xmlns:ns1="http://prov.spec.email.kernel.sistema/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://prov.spec.email.kernel.sistema/" version="1.0" xmlns:tns="http://prov.spec.email.kernel.sistema/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="createPaste" type="tns:createPaste"/>
+<xs:element name="createPasteResponse" type="tns:createPasteResponse"/>
+<xs:element name="deleteEmail" type="tns:deleteEmail"/>
+<xs:element name="deleteEmailResponse" type="tns:deleteEmailResponse"/>
+<xs:element name="deletePaste" type="tns:deletePaste"/>
+<xs:element name="deletePasteResponse" type="tns:deletePasteResponse"/>
+<xs:element name="getAllPastesByUser" type="tns:getAllPastesByUser"/>
+<xs:element name="getAllPastesByUserResponse" type="tns:getAllPastesByUserResponse"/>
+<xs:element name="getEmail" type="tns:getEmail"/>
+<xs:element name="getEmailResponse" type="tns:getEmailResponse"/>
+<xs:element name="getEmailsByPaste" type="tns:getEmailsByPaste"/>
+<xs:element name="getEmailsByPasteResponse" type="tns:getEmailsByPasteResponse"/>
+<xs:element name="getPaste" type="tns:getPaste"/>
+<xs:element name="getPasteResponse" type="tns:getPasteResponse"/>
+<xs:element name="getReceivedEmailsByUser" type="tns:getReceivedEmailsByUser"/>
+<xs:element name="getReceivedEmailsByUserResponse" type="tns:getReceivedEmailsByUserResponse"/>
+<xs:element name="getReceivedEmailsFromUserByUser" type="tns:getReceivedEmailsFromUserByUser"/>
+<xs:element name="getReceivedEmailsFromUserByUserResponse" type="tns:getReceivedEmailsFromUserByUserResponse"/>
+<xs:element name="getSentEmailsByUser" type="tns:getSentEmailsByUser"/>
+<xs:element name="getSentEmailsByUserResponse" type="tns:getSentEmailsByUserResponse"/>
+<xs:element name="getSentEmailsFromUserByUser" type="tns:getSentEmailsFromUserByUser"/>
+<xs:element name="getSentEmailsFromUserByUserResponse" type="tns:getSentEmailsFromUserByUserResponse"/>
+<xs:element name="sendEmail" type="tns:sendEmail"/>
+<xs:element name="sendEmailResponse" type="tns:sendEmailResponse"/>
+<xs:complexType name="createPaste">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="createdDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="idUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createPasteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:pasteDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="pasteDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="createdDate" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="emails" nillable="true" type="tns:emailDTO"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="user" type="tns:userDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="emailDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dateSent" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="receivedUser" nillable="true" type="tns:userDTO"/>
+      <xs:element minOccurs="0" name="sentUser" type="tns:userDTO"/>
+      <xs:element minOccurs="0" name="subject" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="userDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="birthDay" type="xs:string"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="gender" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="pastes" nillable="true" type="tns:pasteDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="hashSet">
+    <xs:complexContent>
+      <xs:extension base="tns:abstractSet">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="abstractSet">
+    <xs:complexContent>
+      <xs:extension base="tns:abstractCollection">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType abstract="true" name="abstractCollection">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getEmailsByPaste">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPaste" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getEmailsByPasteResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:emailDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllPastesByUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllPastesByUserResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:pasteDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSentEmailsFromUserByUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idSentUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="idReceivedUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSentEmailsFromUserByUserResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:emailDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getPaste">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPaste" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getPasteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:pasteDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getEmail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idEmail" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getEmailResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:emailDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteEmail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idEmail" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteEmailResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSentEmailsByUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSentEmailsByUserResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:emailDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sendEmail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUserSent" type="xs:string"/>
+      <xs:element minOccurs="0" name="idUserReceived" type="xs:string"/>
+      <xs:element minOccurs="0" name="sentDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="subject" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+      <xs:element minOccurs="0" name="idPaste" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sendEmailResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getReceivedEmailsFromUserByUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idSentUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="idReceivedUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getReceivedEmailsFromUserByUserResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:emailDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getReceivedEmailsByUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUser" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getReceivedEmailsByUserResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:emailDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deletePaste">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPaste" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deletePasteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createPaste">
+    <wsdl:part element="ns1:createPaste" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePasteResponse">
+    <wsdl:part element="ns1:deletePasteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReceivedEmailsFromUserByUserResponse">
+    <wsdl:part element="ns1:getReceivedEmailsFromUserByUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmail">
+    <wsdl:part element="ns1:getEmail" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPastesByUserResponse">
+    <wsdl:part element="ns1:getAllPastesByUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmailsByPasteResponse">
+    <wsdl:part element="ns1:getEmailsByPasteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePaste">
+    <wsdl:part element="ns1:deletePaste" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmailResponse">
+    <wsdl:part element="ns1:getEmailResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteEmailResponse">
+    <wsdl:part element="ns1:deleteEmailResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReceivedEmailsByUser">
+    <wsdl:part element="ns1:getReceivedEmailsByUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEmail">
+    <wsdl:part element="ns1:sendEmail" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSentEmailsByUserResponse">
+    <wsdl:part element="ns1:getSentEmailsByUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPaste">
+    <wsdl:part element="ns1:getPaste" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSentEmailsFromUserByUserResponse">
+    <wsdl:part element="ns1:getSentEmailsFromUserByUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReceivedEmailsByUserResponse">
+    <wsdl:part element="ns1:getReceivedEmailsByUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReceivedEmailsFromUserByUser">
+    <wsdl:part element="ns1:getReceivedEmailsFromUserByUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSentEmailsByUser">
+    <wsdl:part element="ns1:getSentEmailsByUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmailsByPaste">
+    <wsdl:part element="ns1:getEmailsByPaste" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPastesByUser">
+    <wsdl:part element="ns1:getAllPastesByUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSentEmailsFromUserByUser">
+    <wsdl:part element="ns1:getSentEmailsFromUserByUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteEmail">
+    <wsdl:part element="ns1:deleteEmail" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEmailResponse">
+    <wsdl:part element="ns1:sendEmailResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPasteResponse">
+    <wsdl:part element="ns1:getPasteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createPasteResponse">
+    <wsdl:part element="ns1:createPasteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IEmailWS">
+    <wsdl:operation name="createPaste">
+      <wsdl:input message="ns1:createPaste" name="createPaste">
+    </wsdl:input>
+      <wsdl:output message="ns1:createPasteResponse" name="createPasteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmailsByPaste">
+      <wsdl:input message="ns1:getEmailsByPaste" name="getEmailsByPaste">
+    </wsdl:input>
+      <wsdl:output message="ns1:getEmailsByPasteResponse" name="getEmailsByPasteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPastesByUser">
+      <wsdl:input message="ns1:getAllPastesByUser" name="getAllPastesByUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:getAllPastesByUserResponse" name="getAllPastesByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSentEmailsFromUserByUser">
+      <wsdl:input message="ns1:getSentEmailsFromUserByUser" name="getSentEmailsFromUserByUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:getSentEmailsFromUserByUserResponse" name="getSentEmailsFromUserByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaste">
+      <wsdl:input message="ns1:getPaste" name="getPaste">
+    </wsdl:input>
+      <wsdl:output message="ns1:getPasteResponse" name="getPasteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmail">
+      <wsdl:input message="ns1:getEmail" name="getEmail">
+    </wsdl:input>
+      <wsdl:output message="ns1:getEmailResponse" name="getEmailResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEmail">
+      <wsdl:input message="ns1:deleteEmail" name="deleteEmail">
+    </wsdl:input>
+      <wsdl:output message="ns1:deleteEmailResponse" name="deleteEmailResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSentEmailsByUser">
+      <wsdl:input message="ns1:getSentEmailsByUser" name="getSentEmailsByUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:getSentEmailsByUserResponse" name="getSentEmailsByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEmail">
+      <wsdl:input message="ns1:sendEmail" name="sendEmail">
+    </wsdl:input>
+      <wsdl:output message="ns1:sendEmailResponse" name="sendEmailResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedEmailsFromUserByUser">
+      <wsdl:input message="ns1:getReceivedEmailsFromUserByUser" name="getReceivedEmailsFromUserByUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:getReceivedEmailsFromUserByUserResponse" name="getReceivedEmailsFromUserByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceivedEmailsByUser">
+      <wsdl:input message="ns1:getReceivedEmailsByUser" name="getReceivedEmailsByUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:getReceivedEmailsByUserResponse" name="getReceivedEmailsByUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePaste">
+      <wsdl:input message="ns1:deletePaste" name="deletePaste">
+    </wsdl:input>
+      <wsdl:output message="ns1:deletePasteResponse" name="deletePasteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

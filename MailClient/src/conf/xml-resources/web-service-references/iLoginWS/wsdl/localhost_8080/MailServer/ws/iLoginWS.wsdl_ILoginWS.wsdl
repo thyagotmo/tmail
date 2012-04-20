@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ILoginWS" targetNamespace="http://prov.spec.login.kernel.sistema/" xmlns:ns1="http://prov.spec.login.kernel.sistema/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema targetNamespace="http://prov.spec.login.kernel.sistema/" version="1.0" xmlns:tns="http://prov.spec.login.kernel.sistema/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="login" type="tns:login"/>
+<xs:element name="loginResponse" type="tns:loginResponse"/>
+<xs:complexType name="login">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="loginResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="loginResponse">
+    <wsdl:part element="ns1:loginResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="login">
+    <wsdl:part element="ns1:login" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ILoginWS">
+    <wsdl:operation name="login">
+      <wsdl:input message="ns1:login" name="login">
+    </wsdl:input>
+      <wsdl:output message="ns1:loginResponse" name="loginResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

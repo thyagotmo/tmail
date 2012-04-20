@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="FacadeILoginWSService" targetNamespace="http://impl.login.kernel.sistema/" xmlns:ns1="http://prov.spec.login.kernel.sistema/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.login.kernel.sistema/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://localhost:8080/MailServer/ws/iLoginWS?wsdl=ILoginWS.wsdl" namespace="http://prov.spec.login.kernel.sistema/">
+    </wsdl:import>
+  <wsdl:binding name="FacadeILoginWSServiceSoapBinding" type="ns1:ILoginWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="login">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FacadeILoginWSService">
+    <wsdl:port binding="tns:FacadeILoginWSServiceSoapBinding" name="FacadeILoginWSPort">
+      <soap:address location="http://localhost:8080/MailServer/ws/iLoginWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
